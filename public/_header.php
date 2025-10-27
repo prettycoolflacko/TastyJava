@@ -2,6 +2,7 @@
 // Selalu includekan file config di baris pertama
 include '../config/config.php'; 
 
+require_once __DIR__ . '/../app/functions.php';
 // Get current page for active link highlighting
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
@@ -21,17 +22,15 @@ $current_page = basename($_SERVER['PHP_SELF']);
             theme: {
                 extend: {
                     colors: {
-                        primary: '#c0392b',
+                        primary: '#801304ff',
                         'primary-dark': '#a93226',
                     }
                 }
             }
         }
     </script>
-    
-    <!-- Custom CSS for additional styles -->
-    <link rel="stylesheet" href="/tasty_java/assets/css/style.css">
 </head>
+
 <body class="bg-gray-50">
 
     <!-- Navigation Header -->
@@ -39,14 +38,15 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Logo/Brand -->
-                <div class="flex-shrink-0">
-                    <a href="index.php" class="text-white text-2xl font-bold hover:text-gray-200 transition duration-300">
-                        🍳 Dapur Resep
+                <div class="flex items-center space-x-2">
+                    <img src="https://i.pinimg.com/1200x/2f/dc/d3/2fdcd309a463162eeac0396152b68a1d.jpg" alt="" class="h-8 w-auto"/>
+                    <a href="index.php" class="text-white text-2xl font-bold hover:text-gray-200 transition duration-300"> 
+                        Tasty Java
                     </a>
                 </div>
                 
                 <!-- Desktop Navigation Links -->
-                <div class="hidden md:flex md:items-center md:space-x-4">
+                <div class="flex items-center space-x-4">
                     <a href="index.php" 
                        class="<?php echo ($current_page == 'index.php') ? 'bg-primary-dark' : ''; ?> text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-primary-dark transition duration-300">
                         Home
@@ -65,7 +65,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
                        class="<?php echo ($current_page == 'contact.php') ? 'bg-primary-dark' : ''; ?> text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-primary-dark transition duration-300">
                         Kontak Kami
                     </a>
-                    
+
+                    <!-- Admin Links -->
                     <?php if (isset($_SESSION['user_id'])): ?>
                         <?php if ($_SESSION['user_role'] == 'admin'): ?>
                             <a href="/tasty_java/public/admin/dashboard.php" 
@@ -95,72 +96,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
                         </a>
                     <?php endif; ?>
                 </div>
-                
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button type="button" id="mobile-menu-button" 
-                            class="text-white hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white p-2">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="index.php" 
-                   class="<?php echo ($current_page == 'index.php') ? 'bg-primary-dark' : ''; ?> text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-primary-dark">
-                    Home
-                </a>
-                <a href="recipes.php" 
-                   class="<?php echo ($current_page == 'recipes.php') ? 'bg-primary-dark' : ''; ?> text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-primary-dark">
-                    Resep
-                </a>
-                
-                <?php if (isset($_SESSION['user_id'])): ?>
-                    <?php if ($_SESSION['user_role'] == 'admin'): ?>
-                        <a href="admin_dashboard.php" 
-                           class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-primary-dark">
-                            Dashboard
-                        </a>
-                    <?php endif; ?>
-                    <div class="border-t border-primary-dark pt-2 mt-2">
-                        <p class="text-white px-3 py-2 text-sm">
-                            Halo, <span class="font-semibold"><?php echo htmlspecialchars($_SESSION['user_name']); ?></span>
-                        </p>
-                        <a href="logout.php" 
-                           class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-primary-dark">
-                            Logout
-                        </a>
-                    </div>
-                <?php else: ?>
-                    <a href="login.php" 
-                       class="<?php echo ($current_page == 'login.php') ? 'bg-primary-dark' : ''; ?> text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-primary-dark">
-                        Login
-                    </a>
-                    <a href="register.php" 
-                       class="<?php echo ($current_page == 'register.php') ? 'bg-primary-dark' : ''; ?> text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-primary-dark">
-                        Register
-                    </a>
-                <?php endif; ?>
             </div>
         </div>
     </nav>
-    
-    <!-- Mobile Menu Toggle Script -->
-    <script>
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (mobileMenuButton) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-    </script>
 
 
 

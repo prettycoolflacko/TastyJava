@@ -11,8 +11,12 @@ include __DIR__ . '/_header.php'; // Include template header (Tailwind is loaded
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div>
-                    <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900">Tentang Dapur Resep</h1>
-                    <p class="mt-4 text-lg text-gray-700 max-w-xl">Dapur Resep adalah ruang berbagi resep yang menghadirkan masakan sederhana, praktis, dan lezat untuk kegiatan memasak sehari-hari. Kami membangun komunitas yang saling berbagi ide, teknik, dan inspirasi kuliner.</p>
+                    <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900">Tentang Tasty Java</h1>
+                    <p class="mt-4 text-lg text-gray-700 max-w-xl">
+                        Tasty Java adalah ruang berbagi resep yang 
+                        menghadirkan masakan sederhana, praktis, dan lezat untuk 
+                        kegiatan memasak sehari-hari. Kami membangun komunitas yang 
+                        saling berbagi ide, teknik, dan inspirasi kuliner.</p>
 
                     <div class="mt-6 flex flex-wrap gap-3">
                         <a href="recipes.php" class="inline-block bg-primary text-white px-5 py-3 rounded-lg shadow hover:bg-primary-dark transition">Jelajahi Resep</a>
@@ -21,7 +25,7 @@ include __DIR__ . '/_header.php'; // Include template header (Tailwind is loaded
                 </div>
 
                 <div class="rounded-lg overflow-hidden shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=1200" alt="Dapur" class="w-full h-64 object-cover">
+                    <img src="https://i.pinimg.com/1200x/5d/c8/13/5dc813fddddd9edea5a439a886c85c90.jpg" alt="About Tasty Java" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
@@ -83,7 +87,7 @@ include __DIR__ . '/_header.php'; // Include template header (Tailwind is loaded
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 <!-- Card 1 -->
                 <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800" alt="Chef" class="w-full h-44 object-cover">
+                    <img src="https://i.pinimg.com/736x/2c/db/a7/2cdba7f219f0a15880bb6286c15fadf1.jpg" alt="Chef" class="w-full h-44 object-cover">
                     <div class="p-5">
                         <h3 class="font-semibold">Chef Admin</h3>
                         <p class="text-sm text-gray-500">Pendiri & Kurator Resep</p>
@@ -93,7 +97,7 @@ include __DIR__ . '/_header.php'; // Include template header (Tailwind is loaded
 
                 <!-- Card 2 -->
                 <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800" alt="Contributor" class="w-full h-44 object-cover">
+                    <img src="https://i.pinimg.com/736x/a9/fa/69/a9fa6925b303116061edb98e27c453c6.jpg" alt="Contributor" class="w-full h-44 object-cover">
                     <div class="p-5">
                         <h3 class="font-semibold">Kontributor</h3>
                         <p class="text-sm text-gray-500">Penulis Resep</p>
@@ -103,7 +107,7 @@ include __DIR__ . '/_header.php'; // Include template header (Tailwind is loaded
 
                 <!-- Card 3 -->
                 <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-                    <img src="https://images.unsplash.com/photo-1516685018646-549d0f3b2d2b?auto=format&fit=crop&q=80&w=800" alt="Support" class="w-full h-44 object-cover">
+                    <img src="https://i.pinimg.com/1200x/21/f9/b1/21f9b15d71cf787cf10823cf2c499f53.jpg" alt="Support" class="w-full h-44 object-cover">
                     <div class="p-5">
                         <h3 class="font-semibold">Tim Teknik</h3>
                         <p class="text-sm text-gray-500">Pengembang & Infrastruktur</p>

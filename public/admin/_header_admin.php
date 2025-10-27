@@ -81,10 +81,6 @@ $current_page = basename($_SERVER['PHP_SELF']);
                             <div class="text-xs text-gray-500 mt-1">Role: <?= e($user_role) ?></div>
                         </div>
                     </div>
-
-                    <a href="<?= $public ?>/admin/profile.php" title="Edit Profile" class="inline-flex items-center justify-center w-8 h-8 rounded hover:bg-gray-100">
-                        <img src="https://cdn-icons-png.flaticon.com/128/484/484562.png" alt="Edit Profile" class="w-5 h-5" />
-                    </a>
                 </div>
             </div>
 

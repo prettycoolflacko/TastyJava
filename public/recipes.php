@@ -18,8 +18,11 @@ $result = mysqli_query($conn, $sql);
 $recipes = [];
 if ($result && mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        // Buat excerpt dari ingredients
-        $excerpt = substr(strip_tags($row['ingredients']), 0, 100) . '...';
+        // Buat excerpt dari ingredients dan bersihkan line breaks
+        $clean_text = strip_tags($row['ingredients']);
+        $clean_text = preg_replace('/\s+/', ' ', $clean_text); // Replace all whitespace with single space
+        $clean_text = trim($clean_text); // Remove leading/trailing spaces
+        $excerpt = substr($clean_text, 0, 100) . '...';
         $recipes[] = [
             'id' => $row['id'],
             'title' => $row['title'],
@@ -144,14 +147,6 @@ $total_recipes = count($recipes);
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                                 </svg>
                             </a>
-                            
-                            <!-- Recipe Badge -->
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                                </svg>
-                                Mudah
-                            </span>
                         </div>
                     </div>
                 </article>

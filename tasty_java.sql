@@ -35,7 +35,7 @@ INSERT INTO `users` (`name`, `email`, `password_hash`, `role`)
 VALUES (
   'Chef Admin', 
   'admin@resep.com', 
-  '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 
+  '$2y$10$wJRu53TJKhy3on0E1Pz9aO0Sa0BhGVDyyLTPu3eNqgBocMyYrSUG.', 
   'admin'
 );
 
@@ -45,6 +45,6 @@ INSERT INTO `users` (`name`, `email`, `password_hash`, `role`)
 VALUES (
   'User Test', 
   'user@resep.com', 
-  '$2y$10$7KiWJqEd5mGQ5U3PvGQk3OJ8YRq5xGx5wXLJ5Y8vqH0Q.gUKvXqBW', 
+  '$2y$10$G9LQbbIAd7MEIt.gyEbXoe43RXgqzKwbinmUewiBj4FCSCdVj7FEu', 
   'user'
 );

@@ -46,10 +46,6 @@ include __DIR__ . '/_header.php';
                             <input id="remember" name="remember" type="checkbox" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
                             <label for="remember" class="ml-2 block text-sm text-gray-600">Ingat saya</label>
                         </div>
-
-                        <div class="text-sm">
-                            <a href="forgot_password.php" class="font-medium text-primary hover:underline">Lupa password?</a>
-                        </div>
                     </div>
 
                     <div>
@@ -62,14 +58,6 @@ include __DIR__ . '/_header.php';
                         <div class="absolute inset-0 flex items-center">
                             <div class="w-full border-t border-gray-200"></div>
                         </div>
-                        <div class="relative flex justify-center text-sm">
-                            <span class="px-2 bg-white text-gray-500">atau masuk dengan</span>
-                        </div>
-                    </div>
-
-                    <div class="mt-4 grid grid-cols-2 gap-3">
-                        <a href="#" class="inline-flex justify-center py-2 px-4 border rounded-md shadow-sm bg-blue-600 text-white hover:bg-blue-700">Google</a>
-                        <a href="#" class="inline-flex justify-center py-2 px-4 border rounded-md shadow-sm bg-gray-800 text-white hover:bg-gray-900">GitHub</a>
                     </div>
                 </div>
             </div>

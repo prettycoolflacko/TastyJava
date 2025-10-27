@@ -93,8 +93,8 @@ $stmt->close();
                     Bahan-bahan
                 </h2>
                 <div class="bg-orange-50 rounded-lg p-6 border-l-4 border-orange-500">
-                    <div class="text-gray-700 leading-relaxed whitespace-pre-line">
-<?php echo htmlspecialchars($recipe['ingredients']); ?>
+                    <div class="text-gray-700 leading-relaxed prose prose-sm max-w-none">
+<?php echo $recipe['ingredients']; ?>
                     </div>
                 </div>
             </section>
@@ -106,8 +106,8 @@ $stmt->close();
                     Cara Membuat
                 </h2>
                 <div class="bg-gray-50 rounded-lg p-6 border-l-4 border-gray-400">
-                    <div class="text-gray-700 leading-relaxed whitespace-pre-line">
-<?php echo htmlspecialchars($recipe['instructions']); ?>
+                    <div class="text-gray-700 leading-relaxed prose prose-sm max-w-none">
+<?php echo $recipe['instructions']; ?>
                     </div>
                 </div>
             </section>

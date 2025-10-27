@@ -10,7 +10,7 @@ include '_header_admin.php';
     </div>
 
     <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
-        <form action="/app/process_recipe.php" method="POST" enctype="multipart/form-data">
+        <form action="/tasty_java/app/process_recipe.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="action" value="create">
 
             <!-- Nama Resep -->
