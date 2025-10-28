@@ -80,7 +80,7 @@ $result = mysqli_query($conn, $base_sql);
                                 <?php echo date('d M Y, H:i', strtotime($contact['created_at'])); ?>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
-                                <a href="mailto:<?php echo htmlspecialchars($contact['email']); ?>?subject=Re: Pesan Anda" class="inline-flex items-center px-3 py-1 rounded-md bg-blue-100 text-blue-700 hover:bg-blue-200">
+                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=<?php echo urlencode($contact['email']); ?>&su=<?php echo urlencode('Re: Pesan Anda'); ?>" target="_blank" class="inline-flex items-center px-3 py-1 rounded-md bg-blue-100 text-blue-700 hover:bg-blue-200">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
                                     </svg>
@@ -156,8 +156,3 @@ document.getElementById('messageModal').addEventListener('click', function(e) {
 <?php
 include '_footer_admin.php';
 ?>
-
-
-
-
-
