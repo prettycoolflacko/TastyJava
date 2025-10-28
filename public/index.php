@@ -16,15 +16,15 @@ $result = mysqli_query($conn, $sql);
 $latest_recipes = [];
 if ($result && mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        // Ambil excerpt dari ingredients
-        $excerpt = substr(strip_tags($row['ingredients']), 0, 120) . '...';
-        $latest_recipes[] = [
-            'id' => $row['id'],
-            'title' => $row['title'],
-            'image' => $row['featured_image'] ? '/tasty_java/' . $row['featured_image'] : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=1170',
-            'author_name' => $row['author_name'],
-            'excerpt' => $excerpt
-        ];
+      // Ambil excerpt dari ingredients
+      $excerpt = substr(strip_tags(htmlspecialchars($row['ingredients'])), 0, 120) . '...';
+      $latest_recipes[] = [
+        'id' => $row['id'],
+        'title' => $row['title'],
+        'image' => $row['featured_image'] ? '/tasty_java/' . $row['featured_image'] : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=1170',
+        'author_name' => $row['author_name'],
+        'excerpt' => $excerpt
+      ];
     }
 }
 

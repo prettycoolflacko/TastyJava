@@ -23,7 +23,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // 3. Proses form kontak dari pengunjung (existing code)
+    // 3. Proses form kontak dari user yang sudah login
+    // Validasi: user harus login dan memiliki role user, editor, atau admin
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: /tasty_java/public/login.php?error=Anda harus login untuk mengirim pesan");
+        exit();
+    }
+
+    // Validasi role: hanya user, editor, dan admin yang bisa mengirim pesan
+    $allowed_roles = ['user', 'editor', 'admin'];
+    if (!in_array($_SESSION['user_role'], $allowed_roles)) {
+        header("Location: /tasty_java/public/contact.php?error=Akses ditolak");
+        exit();
+    }
+
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $message = mysqli_real_escape_string($conn, $_POST['message']);

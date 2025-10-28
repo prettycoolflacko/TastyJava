@@ -25,15 +25,32 @@ include __DIR__ . '/_header.php';
                     <div class="mb-4 px-4 py-3 rounded-md bg-green-50 text-green-700 border border-green-100"><?php echo htmlspecialchars($_GET['success']); ?></div>
                 <?php endif; ?>
 
+                <?php if (!isset($_SESSION['user_id'])): ?>
+                    <!-- Pesan jika belum login -->
+                    <div class="mb-4 px-4 py-3 rounded-md bg-yellow-50 text-yellow-800 border border-yellow-200">
+                        <div class="flex items-center gap-2">
+                            <p class="font-medium">Anda harus login terlebih dahulu untuk mengirim pesan.</p>
+                        </div>
+                        <div class="mt-3 flex gap-3">
+                            <a href="/tasty_java/public/login.php" class="inline-flex items-center px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition">
+                                Login
+                            </a>
+                            <a href="/tasty_java/public/register.php" class="inline-flex items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">
+                                Daftar
+                            </a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <!-- Form hanya tampil jika sudah login -->
                 <form action="/tasty_java/app/process_contact.php" method="POST" class="space-y-4">
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700">Nama</label>
-                        <input type="text" name="name" id="name" required class="mt-1 block w-full rounded-md border-gray-200 shadow-sm focus:border-primary focus:ring-primary">
+                        <input type="text" name="name" id="name" required value="<?php echo htmlspecialchars($_SESSION['user_name']); ?>" readonly class="mt-1 block w-full rounded-md border-gray-200 bg-gray-50 shadow-sm cursor-not-allowed">
                     </div>
 
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="email" name="email" id="email" required class="mt-1 block w-full rounded-md border-gray-200 shadow-sm focus:border-primary focus:ring-primary">
+                        <input type="email" name="email" id="email" required value="<?php echo htmlspecialchars($_SESSION['user_email']); ?>" readonly class="mt-1 block w-full rounded-md border-gray-200 bg-gray-50 shadow-sm cursor-not-allowed">
                     </div>
 
                     <div>
@@ -46,6 +63,7 @@ include __DIR__ . '/_header.php';
                         <small class="text-xs text-gray-500">Kami akan membalas dalam 1-2 hari kerja.</small>
                     </div>
                 </form>
+                <?php endif; ?>
             </div>
 
             <!-- Contact Info / Map -->

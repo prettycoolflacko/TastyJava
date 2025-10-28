@@ -66,12 +66,12 @@ $current_page = basename($_SERVER['PHP_SELF']);
                         Kontak Kami
                     </a>
 
-                    <!-- Admin Links -->
+                    <!-- Admin/Editor Links -->
                     <?php if (isset($_SESSION['user_id'])): ?>
-                        <?php if ($_SESSION['user_role'] == 'admin'): ?>
+                        <?php if ($_SESSION['user_role'] == 'admin' || $_SESSION['user_role'] == 'editor'): ?>
                             <a href="/tasty_java/public/admin/dashboard.php" 
                                class="<?php echo ($current_page == 'dashboard.php') ? 'bg-primary-dark' : ''; ?> text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-primary-dark transition duration-300">
-                                Dashboard
+                                <?php echo $_SESSION['user_role'] == 'admin' ? 'Dashboard' : 'Panel Editor'; ?>
                             </a>
                         <?php endif; ?>
                         

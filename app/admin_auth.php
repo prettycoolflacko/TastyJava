@@ -10,14 +10,14 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// 3. Cek apakah rolenya adalah 'admin'
-if ($_SESSION['user_role'] != 'admin') {
-    // Jika bukan admin, tendang ke halaman utama
+// 3. Cek apakah rolenya adalah 'admin' atau 'editor'
+if ($_SESSION['user_role'] != 'admin' && $_SESSION['user_role'] != 'editor') {
+    // Jika bukan admin atau editor, tendang ke halaman utama
     header("Location: /tasty_java/public/index.php?error=Akses ditolak");
     exit();
 }
 
-// Jika lolos semua, user adalah admin
+// Jika lolos semua, user adalah admin atau editor
 ?>
 
 

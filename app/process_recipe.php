@@ -19,9 +19,9 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" && !$is_delete_request) {
 if (isset($_POST['action']) && $_POST['action'] == 'create') {
     
     // Ambil data dari form
-    $title = mysqli_real_escape_string($conn, $_POST['title']);
-    $ingredients = mysqli_real_escape_string($conn, $_POST['ingredients']);
-    $instructions = mysqli_real_escape_string($conn, $_POST['instructions']);
+    $title = $_POST['title'];
+    $ingredients = $_POST['ingredients'];
+    $instructions = $_POST['instructions'];
     $author_id = $_SESSION['user_id']; // Ambil ID Chef dari session
 
     // Validasi dasar
@@ -57,7 +57,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
         }
     }
 
-    // Simpan ke Database (Prepared Statement - WAJIB BNSP)
+    // Simpan ke Database
     $stmt = $conn->prepare("INSERT INTO recipes (title, ingredients, instructions, featured_image, author_id) VALUES (?, ?, ?, ?, ?)");
     // ssssi = string, string, string, string, integer
     $stmt->bind_param("ssssi", $title, $ingredients, $instructions, $db_path_image, $author_id);
@@ -79,11 +79,11 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
 elseif (isset($_POST['action']) && $_POST['action'] == 'update') {
     
     // Ambil data dari form
-    $id = mysqli_real_escape_string($conn, $_POST['id']);
-    $title = mysqli_real_escape_string($conn, $_POST['title']);
-    $ingredients = mysqli_real_escape_string($conn, $_POST['ingredients']);
-    $instructions = mysqli_real_escape_string($conn, $_POST['instructions']);
-    $old_image_path = mysqli_real_escape_string($conn, $_POST['old_image_path']);
+    $id = (int)$_POST['id']; // Cast to integer for ID
+    $title = $_POST['title'];
+    $ingredients = $_POST['ingredients'];
+    $instructions = $_POST['instructions'];
+    $old_image_path = $_POST['old_image_path']; // Tidak perlu escape, hanya diteruskan
     
     // Validasi
     if (empty($id) || empty($title) || empty($ingredients) || empty($instructions)) {

@@ -56,6 +56,7 @@ $current_admin_id = $_SESSION['user_id'];
                                     <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
                                     <select name="new_role" class="rounded-md border border-gray-200 px-2 py-1 text-sm" <?php echo ($user['id'] == $current_admin_id) ? 'disabled' : ''; ?>>
                                         <option value="user" <?php echo ($user['role'] == 'user') ? 'selected' : ''; ?>>User</option>
+                                        <option value="editor" <?php echo ($user['role'] == 'editor') ? 'selected' : ''; ?>>Editor</option>
                                         <option value="admin" <?php echo ($user['role'] == 'admin') ? 'selected' : ''; ?>>Admin</option>
                                     </select>
                                     <button type="submit" class="ml-2 px-3 py-1 bg-indigo-600 text-white rounded text-sm hover:bg-indigo-700" <?php echo ($user['id'] == $current_admin_id) ? 'disabled' : ''; ?>>Ubah</button>

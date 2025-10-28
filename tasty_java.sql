@@ -7,7 +7,7 @@ CREATE TABLE `users` (
   `name` VARCHAR(100) NOT NULL,
   `email` VARCHAR(100) NOT NULL UNIQUE,
   `password_hash` VARCHAR(255) NOT NULL,
-  `role` ENUM('admin', 'user') NOT NULL DEFAULT 'user',
+  `role` ENUM('admin', 'editor', 'user') NOT NULL DEFAULT 'user',
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
@@ -47,4 +47,14 @@ VALUES (
   'user@resep.com', 
   '$2y$10$G9LQbbIAd7MEIt.gyEbXoe43RXgqzKwbinmUewiBj4FCSCdVj7FEu', 
   'user'
+);
+
+-- Insert editor dengan password 'editor123'
+-- Password: editor123
+INSERT INTO `users` (`name`, `email`, `password_hash`, `role`) 
+VALUES (
+  'Editor Resep', 
+  'editor@resep.com', 
+  '$2y$10$T9kZHMiOslYOOz7OX5IWKe4u1BJ8M.2/D7MJ5oCWlhS1PcgXZYUYC', 
+  'editor'
 );

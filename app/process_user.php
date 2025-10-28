@@ -43,7 +43,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create_user') {
         $errors[] = "Password dan konfirmasi password tidak cocok";
     }
     
-    if (empty($role) || !in_array($role, ['user', 'admin'])) {
+    if (empty($role) || !in_array($role, ['user', 'admin', 'editor'])) {
         $errors[] = "Role tidak valid";
     }
     
@@ -125,7 +125,7 @@ elseif (isset($_POST['action']) && $_POST['action'] == 'edit_user') {
         $errors[] = "Format email tidak valid";
     }
     
-    if (empty($role) || !in_array($role, ['user', 'admin'])) {
+    if (empty($role) || !in_array($role, ['user', 'editor', 'admin'])) {
         $errors[] = "Role tidak valid";
     }
     
@@ -210,7 +210,7 @@ elseif (isset($_POST['action']) && $_POST['action'] == 'update_role') {
     $new_role = mysqli_real_escape_string($conn, $_POST['new_role']);
     
     // Validasi: Pastikan role-nya 'admin' atau 'user'
-    if (!in_array($new_role, ['admin', 'user'])) {
+    if (!in_array($new_role, ['admin', 'user', 'editor'])) {
         header("Location: /tasty_java/public/admin/manage_users.php?error=Role tidak valid");
         exit();
     }

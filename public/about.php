@@ -90,7 +90,7 @@ include __DIR__ . '/_header.php'; // Include template header (Tailwind is loaded
                     <img src="https://i.pinimg.com/736x/2c/db/a7/2cdba7f219f0a15880bb6286c15fadf1.jpg" alt="Chef" class="w-full h-44 object-cover">
                     <div class="p-5">
                         <h3 class="font-semibold">Chef Admin</h3>
-                        <p class="text-sm text-gray-500">Pendiri & Kurator Resep</p>
+                        <p class="text-sm text-gray-500">Pendiri</p>
                         <p class="mt-3 text-gray-600 text-sm">Memastikan resep yang dipublikasikan jelas, enak, dan mudah diikuti.</p>
                     </div>
                 </div>
@@ -118,7 +118,7 @@ include __DIR__ . '/_header.php'; // Include template header (Tailwind is loaded
         </div>
     </section>
 
-    <!-- CALL TO ACTION -->
+    <!-- CALL TO ACTION
     <section class="py-12 bg-gradient-to-r from-primary to-primary-dark text-white">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-2xl font-bold">Ingin Berkontribusi Resep?</h2>
@@ -131,8 +131,8 @@ include __DIR__ . '/_header.php'; // Include template header (Tailwind is loaded
                     <a href="login.php" class="border-2 border-white px-6 py-3 rounded-lg">Login</a>
                 <?php endif; ?>
             </div>
-        </div>
-    </section>
+        </div> -->
+    <!-- </section> -->
 
 <?php
 // Include footer (footer closes the .main-content div)
