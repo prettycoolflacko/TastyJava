@@ -7,14 +7,14 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] != 'admin') {
     exit();
 }
 
-// Validate and get user ID
+// Validasi ID user
 $user_id = intval($_GET['id'] ?? 0);
 if (!$user_id) {
     header("Location: /tasty_java/public/admin/manage_users.php?error=ID user tidak ditemukan");
     exit();
 }
 
-// Fetch user data
+// Ambil data user dari database
 $stmt = $conn->prepare("SELECT id, name, email, role FROM users WHERE id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -30,14 +30,14 @@ $page_title = 'Edit User';
 include '_header_admin.php';
 ?>
 
-<div class="container mt-5">
+<div class="container mt-4">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow-sm">
+        <div class="col-md-6">
+            <div class="card">
                 <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">Edit User</h4>
+                    <h5 class="mb-0">Edit User</h5>
                 </div>
-                <div class="card-body p-4">
+                <div class="card-body">
                     <?php if (isset($_GET['error'])): ?>
                         <div class="alert alert-danger"><?= htmlspecialchars($_GET['error']) ?></div>
                     <?php endif; ?>
@@ -65,13 +65,14 @@ include '_header_admin.php';
                         <div class="mb-3">
                             <label class="form-label">Role *</label>
                             <select class="form-select" name="role" required>
-                                <option value="">-- Pilih Role --</option>
+                                <option value="">Pilih Role</option>
                                 <option value="user" <?= $user['role'] == 'user' ? 'selected' : '' ?>>User</option>
+                                <option value="editor" <?= $user['role'] == 'editor' ? 'selected' : '' ?>>Editor</option>
                                 <option value="admin" <?= $user['role'] == 'admin' ? 'selected' : '' ?>>Admin</option>
                             </select>
                         </div>
 
-                        <hr class="my-4">
+                        <hr>
 
                         <h6 class="mb-3">Ubah Password (Opsional)</h6>
 
@@ -86,9 +87,9 @@ include '_header_admin.php';
                             <input type="password" class="form-control" name="confirm_password">
                         </div>
 
-                        <div class="d-flex gap-2 justify-content-end">
+                        <div class="d-flex gap-2">
                             <a href="/tasty_java/public/admin/manage_users.php" class="btn btn-secondary">Kembali</a>
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </form>
                 </div>
@@ -96,5 +97,3 @@ include '_header_admin.php';
         </div>
     </div>
 </div>
-
-<?php include '_footer_admin.php'; ?>

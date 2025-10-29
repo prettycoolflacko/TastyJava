@@ -1,8 +1,6 @@
 <?php
-// 1. Panggil Penjaga Keamanan & Config
-require_once __DIR__ . '/admin_auth.php'; // Memastikan hanya admin yang bisa akses
+require_once __DIR__ . '/admin_auth.php';
 
-// 2. Pastikan file ini diakses dengan metode POST
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
     header("Location: /tasty_java/public/admin/dashboard.php");
     exit();
@@ -247,9 +245,6 @@ elseif (isset($_POST['action']) && $_POST['action'] == 'delete_user') {
         exit();
     }
 
-    // Hapus user dari database
-    // CATATAN: Jika ada 'foreign key constraint' (misal: resep terkait),
-    // penghapusan bisa gagal. Di database kita (ON DELETE SET NULL), author_id resep akan jadi NULL.
     $stmt = $conn->prepare("DELETE FROM users WHERE id = ?");
     $stmt->bind_param("i", $user_id);
     

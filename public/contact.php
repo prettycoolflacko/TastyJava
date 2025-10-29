@@ -42,27 +42,27 @@ include __DIR__ . '/_header.php';
                     </div>
                 <?php else: ?>
                     <!-- Form hanya tampil jika sudah login -->
-                <form action="/tasty_java/app/process_contact.php" method="POST" class="space-y-4">
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700">Nama</label>
-                        <input type="text" name="name" id="name" required value="<?php echo htmlspecialchars($_SESSION['user_name']); ?>" readonly class="mt-1 block w-full rounded-md border-gray-200 bg-gray-50 shadow-sm cursor-not-allowed">
-                    </div>
+                    <form action="/tasty_java/app/process_contact.php" method="POST" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Nama</label>
+                            <input type="text" name="name" id="name" required value="<?php echo htmlspecialchars($_SESSION['user_name']); ?>" readonly class="mt-1 block w-full rounded-md border-gray-200 bg-gray-50 shadow-sm cursor-not-allowed">
+                        </div>
 
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="email" name="email" id="email" required value="<?php echo htmlspecialchars($_SESSION['user_email']); ?>" readonly class="mt-1 block w-full rounded-md border-gray-200 bg-gray-50 shadow-sm cursor-not-allowed">
-                    </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" name="email" id="email" required value="<?php echo htmlspecialchars($_SESSION['user_email']); ?>" readonly class="mt-1 block w-full rounded-md border-gray-200 bg-gray-50 shadow-sm cursor-not-allowed">
+                        </div>
 
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-gray-700">Pesan</label>
-                        <textarea name="message" id="message" rows="6" required class="mt-1 block w-full rounded-md border-gray-200 shadow-sm focus:border-primary focus:ring-primary"></textarea>
-                    </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700">Pesan</label>
+                            <textarea name="message" id="message" rows="6" required class="mt-1 block w-full rounded-md border-gray-200 shadow-sm focus:border-primary focus:ring-primary"></textarea>
+                        </div>
 
-                    <div class="flex items-center justify-between">
-                        <button type="submit" class="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary-dark transition">Kirim Pesan</button>
-                        <small class="text-xs text-gray-500">Kami akan membalas dalam 1-2 hari kerja.</small>
-                    </div>
-                </form>
+                        <div class="flex items-center justify-between">
+                            <button type="submit" class="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary-dark transition">Kirim Pesan</button>
+                            <small class="text-xs text-gray-500">Kami akan membalas dalam 1-2 hari kerja.</small>
+                        </div>
+                    </form>
                 <?php endif; ?>
             </div>
 
@@ -99,135 +99,135 @@ include __DIR__ . '/_header.php';
                         Perbesar Peta
                     </button>
                 </div>
-            
-            <!-- Map -->
-            <div class="w-full h-40 overflow-hidden rounded-lg border border-gray-100 mt-3">
-                <button id="mapThumbBtn" class="w-full h-full block p-0 m-0" aria-label="Buka peta besar" style="all: unset;">
-                    <iframe
-                        title="Lokasi Tasty Java (thumbnail)"
-                        width="200%"
-                        height="200%"
-                        frameborder="0"
-                        style="border:0"
-                        src="https://www.google.com/maps?q=Jl.+Contoh+No.1+Kota+Contoh+Indonesia&output=embed"
-                        allowfullscreen
-                        loading="lazy">
-                    </iframe>
+
+                <!-- Map -->
+                <div class="w-full h-40 overflow-hidden rounded-lg border border-gray-100 mt-3">
+                    <button id="mapThumbBtn" class="w-full h-full block p-0 m-0" aria-label="Buka peta besar" style="all: unset;">
+                        <iframe
+                            title="Lokasi Tasty Java (thumbnail)"
+                            width="200%"
+                            height="200%"
+                            frameborder="0"
+                            style="border:0"
+                            src="https://www.google.com/maps?q=Jl.+Contoh+No.1+Kota+Contoh+Indonesia&output=embed"
+                            allowfullscreen
+                            loading="lazy">
+                        </iframe>
+                    </button>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg border border-gray-100 text-sm text-gray-600">
+                    <strong>Jam Operasional:</strong>
+                    <p class="mt-1">Senin - Jumat: 09:00 - 17:00</p>
+                    <p>Sabtu: 10:00 - 14:00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Peta -->
+    <div id="mapModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 overflow-hidden">
+            <div class="flex items-center justify-between p-4 border-b">
+                <h3 class="text-lg font-semibold">Lokasi Tasty Java</h3>
+                <button id="closeMapBtn" class="text-gray-500 hover:text-gray-700" aria-label="Tutup peta">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
                 </button>
             </div>
-
-            <div class="bg-white p-4 rounded-lg border border-gray-100 text-sm text-gray-600">
-                <strong>Jam Operasional:</strong>
-                <p class="mt-1">Senin - Jumat: 09:00 - 17:00</p>
-                <p>Sabtu: 10:00 - 14:00</p>
+            <div class="w-full h-96">
+                <iframe
+                    title="Lokasi Tasty Java (peta besar)"
+                    width="100%"
+                    height="100%"
+                    frameborder="0"
+                    style="border:0"
+                    src="https://www.google.com/maps?q=Gg.+Kruwing+No.+51+Yogyakarta&output=embed"
+                    allowfullscreen
+                    loading="lazy">
+                </iframe>
             </div>
         </div>
-</div>
-</section>
-
-<!-- Modal Peta -->
-<div id="mapModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 overflow-hidden">
-        <div class="flex items-center justify-between p-4 border-b">
-            <h3 class="text-lg font-semibold">Lokasi Tasty Java</h3>
-            <button id="closeMapBtn" class="text-gray-500 hover:text-gray-700" aria-label="Tutup peta">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
-        <div class="w-full h-96">
-            <iframe
-                title="Lokasi Tasty Java (peta besar)"
-                width="100%"
-                height="100%"
-                frameborder="0"
-                style="border:0"
-                src="https://www.google.com/maps?q=Gg.+Kruwing+No.+51+Yogyakarta&output=embed"
-                allowfullscreen
-                loading="lazy">
-            </iframe>
-        </div>
     </div>
-</div>
 
-<!-- CTA -->
-<section class="py-8">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h3 class="text-xl font-bold">Ingin berbagi resep?</h3>
-        <p class="mt-2 text-gray-600">Daftar dan bagikan kreasi kulinermu supaya lebih banyak orang bisa mencoba.</p>
-        <div class="mt-4">
+    <!-- CTA -->
+    <section class="py-8">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="text-xl font-bold">Ingin berbagi resep?</h3>
             <?php if (isset($_SESSION['user_id'])): ?>
-                <a href="admin/create_recipe.php" class="inline-block px-6 py-3 bg-primary text-white rounded-lg">Tambah Resep</a>
+                <p class="mt-2 text-gray-600">Kontak kami dengan memberikan kontribusi, resep, atau saran. Anda akan kami jadikan kontributir/editor Tasty Java.</p>
             <?php else: ?>
-                <a href="register.php" class="inline-block px-6 py-3 bg-primary text-white rounded-lg">Daftar Sekarang</a>
-            <?php endif; ?>
+                <p class="mt-2 text-gray-600">Daftar dan bagikan kreasi kulinermu supaya lebih banyak orang bisa mencoba.</p>
+                <div class="mt-4">
+                    <a href="register.php" class="inline-block px-6 py-3 bg-primary text-white rounded-lg">Daftar Sekarang</a>
+                <?php endif; ?>
+                </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Script: copy alamat + buka modal -->
-<script>
-    // Copy alamat ke clipboard
-    document.getElementById('copyAddressBtn').addEventListener('click', function() {
-        const text = document.getElementById('alamatText').innerText.trim();
-        if (!navigator.clipboard) {
-            // fallback
-            const el = document.createElement('textarea');
-            el.value = text;
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
-            alert('Alamat disalin ke clipboard');
-            return;
-        }
-        navigator.clipboard.writeText(text).then(() => {
-            // notifikasi kecil (bisa diganti toast)
-            this.classList.add('ring-2', 'ring-green-300');
-            setTimeout(() => this.classList.remove('ring-2', 'ring-green-300'), 800);
-        }, () => {
-            alert('Gagal menyalin alamat');
+    <!-- Script: copy alamat + buka modal -->
+    <script>
+        // Copy alamat ke clipboard
+        document.getElementById('copyAddressBtn').addEventListener('click', function() {
+            const text = document.getElementById('alamatText').innerText.trim();
+            if (!navigator.clipboard) {
+                // fallback
+                const el = document.createElement('textarea');
+                el.value = text;
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand('copy');
+                document.body.removeChild(el);
+                alert('Alamat disalin ke clipboard');
+                return;
+            }
+            navigator.clipboard.writeText(text).then(() => {
+                // notifikasi kecil (bisa diganti toast)
+                this.classList.add('ring-2', 'ring-green-300');
+                setTimeout(() => this.classList.remove('ring-2', 'ring-green-300'), 800);
+            }, () => {
+                alert('Gagal menyalin alamat');
+            });
         });
-    });
 
-    // Modal map
-    const mapModal = document.getElementById('mapModal');
-    const openMapBtn = document.getElementById('openMapBtn');
-    const mapThumbBtn = document.getElementById('mapThumbBtn');
-    const closeMapBtn = document.getElementById('closeMapBtn');
+        // Modal map
+        const mapModal = document.getElementById('mapModal');
+        const openMapBtn = document.getElementById('openMapBtn');
+        const mapThumbBtn = document.getElementById('mapThumbBtn');
+        const closeMapBtn = document.getElementById('closeMapBtn');
 
-    function openModal() {
-        mapModal.classList.remove('hidden');
-        mapModal.classList.add('flex');
-        mapModal.setAttribute('aria-hidden', 'false');
-    }
-
-    function closeModal() {
-        mapModal.classList.add('hidden');
-        mapModal.classList.remove('flex');
-        mapModal.setAttribute('aria-hidden', 'true');
-    }
-
-    openMapBtn.addEventListener('click', openModal);
-    mapThumbBtn.addEventListener('click', openModal);
-    closeMapBtn.addEventListener('click', closeModal);
-    // close on backdrop click
-    mapModal.addEventListener('click', (e) => {
-        if (e.target === mapModal) closeModal();
-    });
-</script>
-
-<!-- Simple client-side validation (enhanced UX) -->
-<script>
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        const form = e.target;
-        if (!form.reportValidity()) {
-            e.preventDefault();
+        function openModal() {
+            mapModal.classList.remove('hidden');
+            mapModal.classList.add('flex');
+            mapModal.setAttribute('aria-hidden', 'false');
         }
-    });
-</script>
 
-<?php
-include __DIR__ . '/_footer.php';
-?>
+        function closeModal() {
+            mapModal.classList.add('hidden');
+            mapModal.classList.remove('flex');
+            mapModal.setAttribute('aria-hidden', 'true');
+        }
+
+        openMapBtn.addEventListener('click', openModal);
+        mapThumbBtn.addEventListener('click', openModal);
+        closeMapBtn.addEventListener('click', closeModal);
+        // close on backdrop click
+        mapModal.addEventListener('click', (e) => {
+            if (e.target === mapModal) closeModal();
+        });
+    </script>
+
+    <!-- Simple client-side validation (enhanced UX) -->
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            const form = e.target;
+            if (!form.reportValidity()) {
+                e.preventDefault();
+            }
+        });
+    </script>
+
+    <?php
+    include __DIR__ . '/_footer.php';
+    ?>

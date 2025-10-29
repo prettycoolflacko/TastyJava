@@ -64,11 +64,16 @@ $current_admin_id = $_SESSION['user_id'];
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
                                 <a href="<?= $public ?>/admin/edit_user.php?id=<?php echo $user['id']; ?>" class="inline-flex items-center px-3 py-1 rounded-md bg-yellow-100 text-yellow-800 hover:bg-yellow-200">Edit</a>
-                                <form action="/tasty_java/app/process_user.php" method="POST" class="inline-block" onsubmit="return confirm('Apakah Anda YAKIN ingin menghapus pengguna ini? Tindakan ini tidak bisa dibatalkan.');">
-                                    <input type="hidden" name="action" value="delete_user">
-                                    <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
-                                    <button type="submit" class="inline-flex items-center px-3 py-1 rounded-md bg-red-100 text-red-700 hover:bg-red-200" <?php echo ($user['id'] == $current_admin_id) ? 'disabled' : ''; ?>>Hapus</button>
-                                </form>
+                                
+                                <?php if ($user['id'] == $current_admin_id): ?>
+                                    <span class="inline-flex items-center px-3 py-1 rounded-md bg-gray-100 text-gray-400 cursor-not-allowed" title="Anda tidak dapat menghapus akun sendiri">Hapus</span>
+                                <?php else: ?>
+                                    <form action="/tasty_java/app/process_user.php" method="POST" class="inline-block" onsubmit="return confirm('Apakah Anda YAKIN ingin menghapus pengguna ini? Tindakan ini tidak bisa dibatalkan.');">
+                                        <input type="hidden" name="action" value="delete_user">
+                                        <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
+                                        <button type="submit" class="inline-flex items-center px-3 py-1 rounded-md bg-red-100 text-red-700 hover:bg-red-200">Hapus</button>
+                                    </form>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php endwhile; ?>
@@ -81,10 +86,6 @@ $current_admin_id = $_SESSION['user_id'];
         </table>
     </div>
 </div>
-
-<?php
-include '_footer_admin.php';
-?>
 
 
 

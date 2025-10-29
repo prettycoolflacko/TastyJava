@@ -76,10 +76,6 @@ $result = mysqli_query($conn, $base_sql);
     </div>
 </div>
 
-<?php 
-include '_footer_admin.php'; 
-?>
-
 
 
 

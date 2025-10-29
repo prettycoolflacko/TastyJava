@@ -152,7 +152,3 @@ document.getElementById('messageModal').addEventListener('click', function(e) {
     }
 });
 </script>
-
-<?php
-include '_footer_admin.php';
-?>

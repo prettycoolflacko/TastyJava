@@ -1,9 +1,9 @@
 <?php
-$page_title = 'Tentang Kami'; // Set judul halaman
-include __DIR__ . '/_header.php'; // Include template header (Tailwind is loaded in header)
+$page_title = 'Tentang Kami'; 
+include __DIR__ . '/_header.php';
 ?>
 
-<!-- Main wrapper (footer expects to close .main-content) -->
+<!-- Main wrapper -->
 <div class="main-content">
 
     <!-- HERO -->
@@ -12,11 +12,11 @@ include __DIR__ . '/_header.php'; // Include template header (Tailwind is loaded
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div>
                     <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900">Tentang Tasty Java</h1>
-                    <p class="mt-4 text-lg text-gray-700 max-w-xl">
-                        Tasty Java adalah ruang berbagi resep yang 
-                        menghadirkan masakan sederhana, praktis, dan lezat untuk 
-                        kegiatan memasak sehari-hari. Kami membangun komunitas yang 
-                        saling berbagi ide, teknik, dan inspirasi kuliner.</p>
+                    <p class="mt-4 text-lg text-gray-700 max-w-xl text-justify">
+                        Tasty Java adalah ruang berbagi resep yang menghadirkan masakan 
+                        lokal dari berbagai daerah di Indonesia dengan sederhana, praktis, 
+                        dan lezat untuk kegiatan memasak sehari-hari. Kami membangun komunitas 
+                        yang saling berbagi ide, teknik, dan inspirasi kuliner.</p>
 
                     <div class="mt-6 flex flex-wrap gap-3">
                         <a href="recipes.php" class="inline-block bg-primary text-white px-5 py-3 rounded-lg shadow hover:bg-primary-dark transition">Jelajahi Resep</a>
@@ -25,7 +25,7 @@ include __DIR__ . '/_header.php'; // Include template header (Tailwind is loaded
                 </div>
 
                 <div class="rounded-lg overflow-hidden shadow-lg">
-                    <img src="https://i.pinimg.com/1200x/5d/c8/13/5dc813fddddd9edea5a439a886c85c90.jpg" alt="About Tasty Java" class="w-full h-full object-cover">
+                    <img src="../assets/about.jpg" alt="About Tasty Java" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
@@ -41,11 +41,11 @@ include __DIR__ . '/_header.php'; // Include template header (Tailwind is loaded
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                     <h3 class="text-xl font-semibold text-gray-900">Nilai Kami</h3>
-                    <p class="mt-3 text-gray-600">Kreativitas, Kebersamaan, dan Kepraktisan. Kami percaya memasak menyatukan keluarga dan teman.</p>
+                    <p class="mt-3 text-gray-600">Kreativitas, Kebersamaan, dan Kepraktisan. Masakan yang mengandung unsur Bhineka Tunggal Ika.</p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                     <h3 class="text-xl font-semibold text-gray-900">Apa yang Kami Tawarkan</h3>
-                    <p class="mt-3 text-gray-600">Kumpulan resep, tutorial langkah demi langkah, dan ruang bagi kontributor untuk berbagi kreasi kuliner.</p>
+                    <p class="mt-3 text-gray-600">Kumpulan resep, tutorial langkah demi langkah, dan ruang bagi kontributor/editor untuk berbagi kreasi kuliner lokal.</p>
                 </div>
             </div>
         </div>
@@ -87,30 +87,30 @@ include __DIR__ . '/_header.php'; // Include template header (Tailwind is loaded
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 <!-- Card 1 -->
                 <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-                    <img src="https://i.pinimg.com/736x/2c/db/a7/2cdba7f219f0a15880bb6286c15fadf1.jpg" alt="Chef" class="w-full h-44 object-cover">
+                    <img src="../assets/pendiri.jpg" alt="Chef" class="w-full h-44 object-cover">
                     <div class="p-5">
                         <h3 class="font-semibold">Chef Admin</h3>
-                        <p class="text-sm text-gray-500">Pendiri</p>
+                        <p class="text-sm text-gray-500">Pendiri, Elyuzar Fazlurrahman</p>
                         <p class="mt-3 text-gray-600 text-sm">Memastikan resep yang dipublikasikan jelas, enak, dan mudah diikuti.</p>
                     </div>
                 </div>
 
                 <!-- Card 2 -->
                 <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-                    <img src="https://i.pinimg.com/736x/a9/fa/69/a9fa6925b303116061edb98e27c453c6.jpg" alt="Contributor" class="w-full h-44 object-cover">
+                    <img src="../assets/editor.jpg" alt="Contributor" class="w-full h-44 object-cover">
                     <div class="p-5">
-                        <h3 class="font-semibold">Kontributor</h3>
+                        <h3 class="font-semibold">Kontributor/Editor</h3>
                         <p class="text-sm text-gray-500">Penulis Resep</p>
-                        <p class="mt-3 text-gray-600 text-sm">Membagikan kreasi masakan rumahan dari berbagai daerah.</p>
+                        <p class="mt-3 text-gray-600 text-sm">Membagikan resep masakan lokal dari berbagai daerah di Indonesia.</p>
                     </div>
                 </div>
 
                 <!-- Card 3 -->
                 <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-                    <img src="https://i.pinimg.com/1200x/21/f9/b1/21f9b15d71cf787cf10823cf2c499f53.jpg" alt="Support" class="w-full h-44 object-cover">
+                    <img src="../assets/team.jpg" alt="Support" class="w-full h-44 object-cover">
                     <div class="p-5">
                         <h3 class="font-semibold">Tim Teknik</h3>
-                        <p class="text-sm text-gray-500">Pengembang & Infrastruktur</p>
+                        <p class="text-sm text-gray-500">Pengembang & Infrastruktur, Me Myself and I</p>
                         <p class="mt-3 text-gray-600 text-sm">Menjaga website cepat, aman, dan mudah digunakan.</p>
                     </div>
                 </div>
@@ -118,24 +118,7 @@ include __DIR__ . '/_header.php'; // Include template header (Tailwind is loaded
         </div>
     </section>
 
-    <!-- CALL TO ACTION
-    <section class="py-12 bg-gradient-to-r from-primary to-primary-dark text-white">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-2xl font-bold">Ingin Berkontribusi Resep?</h2>
-            <p class="mt-3 text-white/90">Bergabunglah sebagai kontributor dan bagikan resep favoritmu kepada komunitas kami.</p>
-            <div class="mt-6 flex justify-center gap-3">
-                <?php if (isset($_SESSION['user_id'])): ?>
-                    <a href="create_recipe.php" class="bg-white text-primary px-6 py-3 rounded-lg font-medium">Tambah Resep</a>
-                <?php else: ?>
-                    <a href="register.php" class="bg-white text-primary px-6 py-3 rounded-lg font-medium">Daftar Sekarang</a>
-                    <a href="login.php" class="border-2 border-white px-6 py-3 rounded-lg">Login</a>
-                <?php endif; ?>
-            </div>
-        </div> -->
-    <!-- </section> -->
-
 <?php
-// Include footer (footer closes the .main-content div)
 include __DIR__ . '/_footer.php';
 ?>
 

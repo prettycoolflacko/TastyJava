@@ -1,10 +1,6 @@
 <?php
-// 1. Panggil Penjaga Keamanan & Config
-require_once __DIR__ . '/admin_auth.php'; // Memastikan hanya admin yang bisa akses
-// config.php sudah di-include oleh admin_auth.php
+require_once __DIR__ . '/admin_auth.php';
 
-// 2. Cek metode request - DELETE bisa pakai GET dengan ID
-// POST untuk create/update, GET untuk delete
 $is_delete_request = (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id']));
 
 if ($_SERVER["REQUEST_METHOD"] != "POST" && !$is_delete_request) {
@@ -14,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" && !$is_delete_request) {
 }
 
 // ----------------------------------------------------
-// AKSI CREATE (dari Langkah 4)
+// AKSI CREATE
 // ----------------------------------------------------
 if (isset($_POST['action']) && $_POST['action'] == 'create') {
     
@@ -59,14 +55,11 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
 
     // Simpan ke Database
     $stmt = $conn->prepare("INSERT INTO recipes (title, ingredients, instructions, featured_image, author_id) VALUES (?, ?, ?, ?, ?)");
-    // ssssi = string, string, string, string, integer
     $stmt->bind_param("ssssi", $title, $ingredients, $instructions, $db_path_image, $author_id);
 
     if ($stmt->execute()) {
-        // Berhasil
         header("Location: /tasty_java/public/admin/manage_recipes.php?success=Resep baru berhasil ditambahkan!");
     } else {
-        // Gagal
         header("Location: /tasty_java/public/admin/create_recipe.php?error=Gagal menyimpan ke database: " . $stmt->error);
     }
     $stmt->close();
@@ -74,16 +67,15 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
 }
 
 // ----------------------------------------------------
-// AKSI UPDATE (dari Langkah 5)
+// AKSI UPDATE
 // ----------------------------------------------------
 elseif (isset($_POST['action']) && $_POST['action'] == 'update') {
     
-    // Ambil data dari form
-    $id = (int)$_POST['id']; // Cast to integer for ID
+    $id = (int)$_POST['id'];
     $title = $_POST['title'];
     $ingredients = $_POST['ingredients'];
     $instructions = $_POST['instructions'];
-    $old_image_path = $_POST['old_image_path']; // Tidak perlu escape, hanya diteruskan
+    $old_image_path = $_POST['old_image_path'];
     
     // Validasi
     if (empty($id) || empty($title) || empty($ingredients) || empty($instructions)) {
@@ -91,7 +83,6 @@ elseif (isset($_POST['action']) && $_POST['action'] == 'update') {
         exit();
     }
 
-    // Set path gambar ke path yang lama sebagai default
     $db_path_image = $old_image_path;
 
     // Cek jika ada gambar BARU yang di-upload
@@ -125,7 +116,6 @@ elseif (isset($_POST['action']) && $_POST['action'] == 'update') {
 
     // Update Database (Prepared Statement)
     $stmt = $conn->prepare("UPDATE recipes SET title = ?, ingredients = ?, instructions = ?, featured_image = ? WHERE id = ?");
-    // ssssi = string, string, string, string, integer
     $stmt->bind_param("ssssi", $title, $ingredients, $instructions, $db_path_image, $id);
 
     if ($stmt->execute()) {

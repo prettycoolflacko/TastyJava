@@ -1,9 +1,8 @@
 <?php
-// Selalu includekan file config di baris pertama
 include '../config/config.php'; 
 
 require_once __DIR__ . '/../app/functions.php';
-// Get current page for active link highlighting
+// Active link highlighting
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 <!DOCTYPE html>
@@ -39,7 +38,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <div class="flex justify-between items-center h-16">
                 <!-- Logo/Brand -->
                 <div class="flex items-center space-x-2">
-                    <img src="https://i.pinimg.com/1200x/2f/dc/d3/2fdcd309a463162eeac0396152b68a1d.jpg" alt="" class="h-8 w-auto"/>
+                    <img src="../assets/tasty_java_logo.jpg" alt="Tasty Java Logo" class="h-8 w-auto"/>
                     <a href="index.php" class="text-white text-2xl font-bold hover:text-gray-200 transition duration-300"> 
                         Tasty Java
                     </a>
@@ -68,7 +67,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
                     <!-- Admin Links -->
                     <?php if (isset($_SESSION['user_id'])): ?>
-                        <?php if ($_SESSION['user_role'] == 'admin'): ?>
+                        <?php if ($_SESSION['user_role'] == 'admin' || $_SESSION['user_role'] == 'editor'): ?>
                             <a href="/tasty_java/public/admin/dashboard.php" 
                                class="<?php echo ($current_page == 'dashboard.php') ? 'bg-primary-dark' : ''; ?> text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-primary-dark transition duration-300">
                                 Dashboard

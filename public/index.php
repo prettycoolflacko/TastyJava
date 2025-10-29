@@ -1,11 +1,9 @@
 <?php 
-// 1. Set judul halaman
 $page_title = 'Tasty Java, Taste from Indonesia';
 
-// 2. Include header
 include __DIR__ . '/_header.php'; 
 
-// 3. Ambil 3 resep terbaru dari database
+// Ambil 3 resep terbaru dari database
 $sql = "SELECT recipes.id, recipes.title, recipes.featured_image, recipes.ingredients, users.name AS author_name 
         FROM recipes 
         JOIN users ON recipes.author_id = users.id 
@@ -16,12 +14,11 @@ $result = mysqli_query($conn, $sql);
 $latest_recipes = [];
 if ($result && mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-      // Ambil excerpt dari ingredients
       $excerpt = substr(strip_tags(htmlspecialchars($row['ingredients'])), 0, 120) . '...';
       $latest_recipes[] = [
         'id' => $row['id'],
         'title' => $row['title'],
-        'image' => $row['featured_image'] ? '/tasty_java/' . $row['featured_image'] : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=1170',
+        'image' => $row['featured_image'] ? '/tasty_java/' . $row['featured_image'] : '../assets/placeholder.jpg',
         'author_name' => $row['author_name'],
         'excerpt' => $excerpt
       ];
@@ -29,14 +26,14 @@ if ($result && mysqli_num_rows($result) > 0) {
 }
 
 ?>
-<!-- HERO: Carousel (Full Width) -->
+<!-- Carousel -->
 <section class="mb-12">
   <div class="relative">
     <div id="carousel" class="relative overflow-hidden shadow-lg">
       <!-- Slides -->
       <div class="carousel-slides relative h-[420px] md:h-[520px]">
           <div class="carousel-item absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100" data-index="0" aria-hidden="false">
-            <img src="https://i.pinimg.com/1200x/0b/bb/e8/0bbbe8435a1373f6564377a6059cb710.jpg" alt="Tasty Java 1" class="w-full h-full object-cover">
+            <img src="../assets/carousel1.jpg" alt="Tasty Java 1" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-black/30"></div>
             <div class="absolute inset-0 flex flex-col justify-center items-start md:items-center text-left md:text-center px-6 md:px-12 text-white">
               <h2 class="text-3xl md:text-5xl font-extrabold drop-shadow-lg leading-tight">🍳 Welcome to Tasty Java</h2>
@@ -51,11 +48,11 @@ if ($result && mysqli_num_rows($result) > 0) {
           </div>
 
           <div class="carousel-item absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0" data-index="1" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=1600" alt="Resep Terbaru" class="w-full h-full object-cover">
+            <img src="../assets/carousel2.jpg" alt="Resep Terbaru" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-black/30"></div>
             <div class="absolute inset-0 flex flex-col justify-center items-start md:items-center text-left md:text-center px-6 md:px-12 text-white">
               <h2 class="text-3xl md:text-5xl font-extrabold drop-shadow-lg leading-tight">Resep & Tutorial Terbaru</h2>
-              <p class="mt-4 text-sm md:text-lg text-white/90 max-w-3xl">Temukan panduan praktis masakan rumahan yang dibuat dengan cinta oleh para chef dan kontributor.</p>
+              <p class="mt-4 text-sm md:text-lg text-white/90 max-w-3xl">Find your favorite recipes and cooking tips.</p>
               <div class="mt-6 flex flex-col sm:flex-row gap-3">
                 <a href="recipes.php" class="inline-block bg-primary text-white px-5 py-3 rounded-lg shadow hover:bg-primary-dark transition duration-300">Lihat Resep</a>
               </div>
@@ -63,11 +60,11 @@ if ($result && mysqli_num_rows($result) > 0) {
           </div>
 
           <div class="carousel-item absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0" data-index="2" aria-hidden="true">
-            <img src="https://res.cloudinary.com/rainforest-cruises/images/c_fill,g_auto/f_auto,q_auto/v1622207839/Indonesian-Food-Stall/Indonesian-Food-Stall.jpg" alt="Berbagi Resep" class="w-full h-full object-cover">
+            <img src="../assets/carousel3.jpg" alt="Berbagi Resep" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-black/30"></div>
             <div class="absolute inset-0 flex flex-col justify-center items-start md:items-center text-left md:text-center px-6 md:px-12 text-white">
               <h2 class="text-3xl md:text-5xl font-extrabold drop-shadow-lg leading-tight">Berbagi Resep Favorit</h2>
-              <p class="mt-4 text-sm md:text-lg text-white/90 max-w-3xl">Bergabung dengan komunitas pecinta kuliner dan bagikan resep favoritmu di sini.</p>
+              <p class="mt-4 text-sm md:text-lg text-white/90 max-w-3xl">Join us in sharing your favorite recipes.</p>
               <div class="mt-6 flex flex-col sm:flex-row gap-3">
                 <?php if (isset($_SESSION['user_id']) && $_SESSION['user_role'] == 'admin'): ?>
                   <a href="admin/create_recipe.php" class="inline-block bg-primary text-white px-5 py-3 rounded-lg shadow hover:bg-primary-dark transition duration-300">Tambah Resep Baru</a>
@@ -101,7 +98,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 <!-- Main Content Container -->
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-  <!-- RESEP TERBARU -->
+  <!-- New Recipe Section -->
   <section class="mb-12">
     <div class="flex items-center justify-between mb-6">
       <h2 class="text-2xl font-semibold text-gray-800">Resep Terbaru</h2>
@@ -147,17 +144,17 @@ if ($result && mysqli_num_rows($result) > 0) {
       <p class="mt-3 text-gray-700">
         Tasty Java adalah platform berbagi resep masakan yang dibuat untuk memudahkan Anda menemukan inspirasi masakan.
         Semua resep dikurasi dengan baik dan mudah diikuti. Di sini kamu dapat menemukan berbagai resep,
-        mulai dari masakan tradisional hingga masakan modern yang cocok untuk keluarga.
+        mulai dari masakan tradisional hingga masakan modern yang cocok untuk semua kalangan.
       </p>
     </div>
   </section>
 
-  <!-- CALL TO ACTION / Social -->
+  <!-- Link Social Template -->
   <section class="mb-16">
     <div class="bg-white rounded-lg shadow-md p-6 flex flex-col md:flex-row items-center justify-between gap-4">
       <div>
-        <h3 class="text-lg font-semibold text-gray-800">Tetap Terhubung</h3>
-        <p class="text-sm text-gray-600 mt-1">Ikuti update resep terbaru dan tips memasak—jangan lupa bagikan resep favoritmu!</p>
+        <h3 class="text-lg font-semibold text-gray-800">Connect with Us</h3>
+        <p class="text-sm text-gray-600 mt-1">Follow us for the latest recipes and cooking tips—don't forget to share your favorite recipes!</p>
       </div>
 
       <div class="flex items-center gap-3">
@@ -233,6 +230,5 @@ if ($result && mysqli_num_rows($result) > 0) {
 </script>
 
 <?php 
-// 4. Include footer
 include __DIR__ . '/_footer.php'; 
 ?>

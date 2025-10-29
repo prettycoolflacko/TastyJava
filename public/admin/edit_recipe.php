@@ -2,14 +2,12 @@
 $page_title = 'Edit Resep';
 include '_header_admin.php'; 
 
-// 1. Cek apakah 'id' ada di URL
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     header("Location: manage_recipes.php?error=ID Resep tidak valid");
     exit();
 }
 $recipe_id = $_GET['id'];
 
-// 2. Ambil data resep dari database (WAJIB Prepared Statement)
 $stmt = $conn->prepare("SELECT * FROM recipes WHERE id = ?");
 $stmt->bind_param("i", $recipe_id);
 $stmt->execute();
@@ -132,10 +130,6 @@ function previewImage(event) {
     }
 }
 </script>
-
-<?php 
-include '_footer_admin.php'; 
-?>
 
 
 

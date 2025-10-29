@@ -1,13 +1,10 @@
 <?php
-// 1. Include file config.php
 require_once '../config/config.php';
 
-// 2. Pastikan file ini diakses dengan metode POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Cek jika ini adalah request delete dari admin
     if (isset($_POST['action']) && $_POST['action'] === 'delete') {
-        // Pastikan user adalah admin
         if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
             header("Location: /tasty_java/public/index.php?error=Akses ditolak");
             exit();
@@ -23,7 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // 3. Proses form kontak dari user yang sudah login
     // Validasi: user harus login dan memiliki role user, editor, atau admin
     if (!isset($_SESSION['user_id'])) {
         header("Location: /tasty_java/public/login.php?error=Anda harus login untuk mengirim pesan");
@@ -41,7 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $message = mysqli_real_escape_string($conn, $_POST['message']);
 
-    // 4. Validasi Sederhana
     if (empty($name) || empty($email) || empty($message)) {
         // Redirect kembali ke contact dengan pesan error
         header("Location: /tasty_java/public/contact.php?error=Semua field wajib diisi");
@@ -53,7 +48,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // 5. Simpan ke database (Gunakan Prepared Statement - WAJIB BNSP)
     $stmt = $conn->prepare("INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $name, $email, $message);
     

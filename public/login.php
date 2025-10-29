@@ -1,19 +1,16 @@
 <?php
-// Include config untuk koneksi database dan session
 require_once '../config/config.php';
 
-// Jika user SUDAH login, tendang ke index.php
 if (isset($_SESSION['user_id'])) {
         header("Location: /tasty_java/public/index.php");
         exit();
 }
 
-// Set page title and include header for consistent layout (header loads Tailwind)
 $page_title = 'Login - Dapur Resep';
 include __DIR__ . '/_header.php';
 ?>
 
-<!-- Main content wrapper (footer will close .main-content) -->
+<!-- Main content wrapper -->
 <div class="main-content">
     <div class="min-h-[70vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-md w-full space-y-8">

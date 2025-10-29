@@ -1,5 +1,5 @@
 <?php 
-$page_title = 'Tambah Resep Baru';
+$page_title = 'Buat Resep Baru';
 include '_header_admin.php'; 
 ?>
 
@@ -20,7 +20,7 @@ include '_header_admin.php';
                 </label>
                 <input type="text" id="title" name="title" required
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    placeholder="Contoh: Nasi Goreng Spesial">
+                    placeholder="Contoh: Nasi Goreng by Tasty Java">
             </div>
 
             <!-- Bahan-bahan -->
@@ -97,10 +97,6 @@ function previewImage(event) {
     }
 }
 </script>
-
-<?php 
-include '_footer_admin.php'; 
-?>
 
 
 

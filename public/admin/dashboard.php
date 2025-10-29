@@ -1,9 +1,8 @@
 <?php 
 $page_title = 'Dashboard';
-include '_header_admin.php'; // Include header admin
+include '_header_admin.php';
 
-// Logika untuk mengambil data statistik
-// Hitung total resep (untuk semua role)
+
 $sql_recipes = "SELECT COUNT(*) AS total FROM recipes";
 $result_recipes = mysqli_query($conn, $sql_recipes);
 $total_recipes = mysqli_fetch_assoc($result_recipes)['total'];
@@ -84,7 +83,3 @@ if ($_SESSION['user_role'] == 'admin') {
         </a>
     </div>
 </div>
-
-<?php 
-include '_footer_admin.php'; // Include footer admin
-?>

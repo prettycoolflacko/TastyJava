@@ -1,18 +1,12 @@
 <?php
-// 1. Include header (config.php otomatis ter-include)
-// Kita tidak set $page_title dulu, kita set setelah dapat data resep
 include '_header.php';
 
-// 2. Cek apakah 'id' ada di URL
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    // Jika tidak ada ID, tendang ke halaman recipes
     header("Location: recipes.php");
     exit();
 }
 
 $recipe_id = $_GET['id'];
-
-// 3. Ambil data resep spesifik (WAJIB PAKAI PREPARED STATEMENT - Keamanan BNSP)
 $stmt = $conn->prepare("SELECT r.title, r.ingredients, r.instructions, r.featured_image, u.name AS author_name, r.created_at 
                        FROM recipes r 
                        JOIN users u ON r.author_id = u.id 
@@ -23,19 +17,16 @@ $result = $stmt->get_result();
 
 if ($result->num_rows === 1) {
     $recipe = $result->fetch_assoc();
-    // Set judul halaman setelah dapat data
     $page_title = htmlspecialchars($recipe['title']);
 } else {
-    // Jika resep tidak ditemukan
     echo "<div class='container'><p>Resep tidak ditemukan.</p></div>";
     include '_footer.php';
-    exit(); // Hentikan eksekusi
+    exit();
 }
 
 $stmt->close();
 ?>
 
-<!-- Menimpa judul di <head> -->
 <script>document.title = "<?php echo $page_title; ?> - Tasty Java";</script>
 
 <!-- Main Container -->

@@ -1,11 +1,8 @@
 <?php 
-// 1. Set judul halaman
-$page_title = 'Semua Resep Masakan';
+$page_title = 'Tasty Java Recipes';
 
-// 2. Include header
 include __DIR__ . '/_header.php'; 
 
-// 3. Ambil semua data resep dari database dengan informasi tambahan
 $sql = "SELECT recipes.id, recipes.title, recipes.featured_image, recipes.ingredients, 
                users.name AS author_name, recipes.created_at 
         FROM recipes 
@@ -14,19 +11,18 @@ $sql = "SELECT recipes.id, recipes.title, recipes.featured_image, recipes.ingred
 
 $result = mysqli_query($conn, $sql);
 
-// Siapkan array untuk menampung data
+// Array untuk menampung data
 $recipes = [];
 if ($result && mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        // Buat excerpt dari ingredients dan bersihkan line breaks
         $clean_text = strip_tags($row['ingredients']);
-        $clean_text = preg_replace('/\s+/', ' ', $clean_text); // Replace all whitespace with single space
-        $clean_text = trim($clean_text); // Remove leading/trailing spaces
+        $clean_text = preg_replace('/\s+/', ' ', $clean_text);
+        $clean_text = trim($clean_text);
         $excerpt = substr($clean_text, 0, 100) . '...';
         $recipes[] = [
             'id' => $row['id'],
             'title' => $row['title'],
-            'image' => $row['featured_image'] ? '/tasty_java/' . $row['featured_image'] : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=600',
+            'image' => $row['featured_image'] ? '/tasty_java/' . $row['featured_image'] : '../assets/placeholder.jpg',
             'author_name' => $row['author_name'],
             'excerpt' => $excerpt,
             'created_at' => $row['created_at']
@@ -53,7 +49,7 @@ $total_recipes = count($recipes);
                 </p>
             </div>
             
-            <?php if (isset($_SESSION['user_id']) && $_SESSION['user_role'] == 'admin'): ?>
+            <?php if (isset($_SESSION['user_role']) && ($_SESSION['user_role'] === 'admin' || $_SESSION['user_role'] === 'editor')): ?>
                 <div class="mt-4 md:mt-0">
                     <a href="admin/create_recipe.php" 
                        class="inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-lg shadow-md hover:bg-primary-dark transition duration-300">
@@ -71,13 +67,11 @@ $total_recipes = count($recipes);
     <?php if (empty($recipes)): ?>
         <!-- Empty State -->
         <div class="text-center py-16 bg-gray-50 rounded-lg">
-            <svg class="mx-auto h-24 w-24 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
-            </svg>
+            <div class="text-8xl mb-4">🍽️</div>
             <h3 class="mt-4 text-xl font-semibold text-gray-900">Belum ada resep</h3>
             <p class="mt-2 text-gray-600">Belum ada resep yang dipublikasikan saat ini.</p>
             
-            <?php if (isset($_SESSION['user_id']) && $_SESSION['user_role'] == 'admin'): ?>
+            <?php if (isset($_SESSION['user_role']) && ($_SESSION['user_role'] === 'admin' || $_SESSION['user_role'] === 'editor')): ?>
                 <div class="mt-6">
                     <a href="admin/create_recipe.php" 
                        class="inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-lg shadow hover:bg-primary-dark transition duration-300">
@@ -166,7 +160,7 @@ $total_recipes = count($recipes);
         <div class="mt-12 bg-gradient-to-r from-primary to-primary-dark rounded-xl p-8 text-center text-white">
             <h2 class="text-2xl font-bold mb-3">Ingin Berbagi Resep Favoritmu?</h2>
             <p class="text-white/90 mb-6 max-w-2xl mx-auto">
-                Bergabunglah dengan komunitas Dapur Resep dan bagikan kreasi masakanmu dengan ribuan pecinta kuliner lainnya!
+                Bergabunglah dengan komunitas Tasty Java dan bagikan kreasi masakanmu dengan ribuan pecinta kuliner lainnya!
             </p>
             <div class="flex flex-col sm:flex-row gap-3 justify-center">
                 <a href="register.php" 

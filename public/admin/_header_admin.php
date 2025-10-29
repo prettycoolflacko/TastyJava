@@ -1,6 +1,4 @@
 <?php
-// 1. Panggil Penjaga Keamanan
-// Path ../../ app/admin_auth.php
 require_once dirname(__DIR__, 2) . '/app/admin_auth.php';
 
 // Mendapatkan nama file saat ini untuk 'active' link
@@ -12,7 +10,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($page_title) ? $page_title : 'Admin Panel'; ?> - Dapur Resep</title>
-    <!-- Tailwind for admin UI -->
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/tasty_java/assets/css/admin_style.css">
     <style>
@@ -161,3 +159,6 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <?php if(isset($_GET['error'])): ?>
             <div class="mb-4 px-4 py-3 rounded-md bg-red-50 text-red-700 border border-red-100"><?php echo htmlspecialchars($_GET['error']); ?></div>
         <?php endif; ?>
+    
+
+    
